@@ -3,18 +3,18 @@
 Renato Leal de Moura Luz  
 05 de julho de 2019
 
-## Proposta
-_(aprox. 2-3 páginas)_
-
-### HISTÓRICO DO ASSUNTO
+### Domain Background
 Sentiment Analysis refers to the use of machine learning to identify the emotional reaction to an event, document or topic [1]. One of the possible applications of sentiment analysis is for predicting stock market movements. The internet is full of sources that represent the public opinion and sentiment about current events. Studies in [2] shows that the aggreagate public mood can be correlated with Dow Jones Industrial Average Index (DJIA).
 
 
-### Descrição do problema
-_(aprox. 1 parágrafo)_
+### Problem Statement
 
-Nesta seção, descreva claramente o problema a ser resolvido. O problema descrito deve ser bem definido e ter pelo menos uma solução possível. Descreva o problema detalhadamente, de forma que fique claro que o problema é quantificável (pode ser expresso em termos matemáticos ou lógicos), mensurável (pode ser medido por uma métrica e claramente observado), e replicável (pode ser reproduzido e ocorre mais de uma vez).
+This capstone seeks a model which uses the top daily news headlines from Reddit ( /r/worldnews ) to predict stock market movement. A dataset with 8 years of daily news headlines and their respective DJIAs is available in Kaggle [3]. The stock market movement will be
+modeled into a binary classification problem, where:
 
+● 1 when DJIA Adj Close value rose or stayed as the same
+
+● 0 when DJIA Adj Close value decreased .
 
 
 ### CONJUNTO DE DADOS E ENTRADAS
