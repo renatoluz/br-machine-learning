@@ -6,17 +6,18 @@ Renato Leal de Moura Luz
 ## Proposta
 _(aprox. 2-3 páginas)_
 
-### Histórico do assunto
-_(aprox. 1-2 parágrafos)_
+### HISTÓRICO DO ASSUNTO
+Sentiment Analysis refers to the use of machine learning to identify the emotional reaction to an event, document or topic [1]. One of the possible applications of sentiment analysis is for predicting stock market movements. The internet is full of sources that represent the public opinion and sentiment about current events. Studies in [2] shows that the aggreagate public mood can be correlated with Dow Jones Industrial Average Index (DJIA).
 
-Nesta seção, dê informações básicas sobre o assunto no qual o projeto está inserido. Informações históricas relevantes ao projeto devem ser incluídas. Deve estar claro como e por qual motivo um problema deste assunto pode ou deve ser resolvido. Pesquisas acadêmicas relacionadas devem ser citadas de forma adequada nesta seção, incluindo o porquê da pesquisa ser relevante. Encorajamos que seja mencionada qual foi a motivação pessoal do aluno para que ele realizasse a investigação de determinado problema nesse domínio, porém, isso não é obrigatório.
 
 ### Descrição do problema
 _(aprox. 1 parágrafo)_
 
 Nesta seção, descreva claramente o problema a ser resolvido. O problema descrito deve ser bem definido e ter pelo menos uma solução possível. Descreva o problema detalhadamente, de forma que fique claro que o problema é quantificável (pode ser expresso em termos matemáticos ou lógicos), mensurável (pode ser medido por uma métrica e claramente observado), e replicável (pode ser reproduzido e ocorre mais de uma vez).
 
-### Conjuntos de dados e entradas
+
+
+### CONJUNTO DE DADOS E ENTRADAS
 
 Two channels of data are provided for this dataset:
 
@@ -30,6 +31,16 @@ Two channels of data are provided for this dataset:
 ○ 0 when DJIA Adj Close value decreased.
   
 
+Three data files are provided on Kaggle in .csv format:
+
+1. RedditNews.csv: two columns The first column is the "date", and second column is the "news headlines". All news are ranked from top to bottom based on how hot they are. Hence, there are 25 lines for each date.
+
+2. DJIA_table.csv: Downloaded directly from Yahoo Finance : check out the web page for more info.
+
+3. Combined_News_DJIA.csv: This is a combined dataset with 27 columns. The first column is "Date", the second is the target variable (DJIA), and the following ones are news headlines ranging from "Top1" to "Top25".
+
+
+The model will be implemented using only the file Combined_News_DJIA.csv . The range of the data is from 2008-06-08 to 2016-07-01 with a total of 3973 rows . The most recent two years of the dataset (about 20%), from 2015-01-02 to 2016-07-01, is going to be reserved for testing.
 
 
 ### Descrição da solução
