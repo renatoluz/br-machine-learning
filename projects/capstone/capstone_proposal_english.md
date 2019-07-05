@@ -1,7 +1,6 @@
 # Machine Learning Engineer Nanodegree
 ## Capstone Proposal - Sentiment Analysis Applied to Stock Prediction
-Renato Leal de Moura Luz  
-05 de julho de 2019
+Renato Leal de Moura Luz, July 5th, 2019  
 
 
 ### 1. Domain Background
