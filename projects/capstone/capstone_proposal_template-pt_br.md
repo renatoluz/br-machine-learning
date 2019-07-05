@@ -1,7 +1,7 @@
 # Nanodegree Engenheiro de Machine Learning
-## Proposta de projeto final
-Joe Udacity  
-31 de dezembro de 2050
+## Proposta de Projeto Final - Análise de Sentimentos Aplicada à Previsão de Valores de Ações
+Renato Leal de Moura Luz  
+05 de julho de 2019
 
 ## Proposta
 _(aprox. 2-3 páginas)_
@@ -17,9 +17,20 @@ _(aprox. 1 parágrafo)_
 Nesta seção, descreva claramente o problema a ser resolvido. O problema descrito deve ser bem definido e ter pelo menos uma solução possível. Descreva o problema detalhadamente, de forma que fique claro que o problema é quantificável (pode ser expresso em termos matemáticos ou lógicos), mensurável (pode ser medido por uma métrica e claramente observado), e replicável (pode ser reproduzido e ocorre mais de uma vez).
 
 ### Conjuntos de dados e entradas
-_(aprox. 2-3 parágrafos)_
 
-Nesta seção, o(s) conjunto(s) de dados e/ou entrada(s) considerado(s) para o projeto deve(m) ser descrito(s) detalhadamente, bem como a forma como ele(s) está(ão) relacionado(s) ao problema e por que deverá(ão) ser utilizado(s). Informações tais como a forma de obtenção do conjunto de dados ou entrada e as características do conjunto de dados ou entrada devem ser incluídas com referências relevantes e citações, conforme o necessário. Deve estar claro como o(s) conjunto(s) de dados ou entrada(s) será(ão) utilizado(s) no projeto e se o uso dele(s) é apropriado, dado o contexto do problema.
+Two channels of data are provided for this dataset:
+
+1. Features: Historical news headlines from Reddit WorldNews Channel (/r/worldnews). They are ranked by reddit users' votes, and only the top 25 headlines are considered for a single date.
+
+
+2. Target Variable: Stock data from Dow Jones Industrial Average (DJIA). The index is converted binary values where:
+
+○ 1 when DJIA Adj Close value rose or stayed as the same
+
+○ 0 when DJIA Adj Close value decreased.
+  
+
+
 
 ### Descrição da solução
 _(aprox. 1 parágrafo)_
