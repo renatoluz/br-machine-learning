@@ -39,7 +39,6 @@ Three data files are provided on Kaggle in .csv format:
 
 3. Combined_News_DJIA.csv: This is a combined dataset with 27 columns. The first column is "Date", the second is the target variable (DJIA), and the following ones are news headlines ranging from "Top1" to "Top25".
 
-
 The model will be implemented using only the file Combined_News_DJIA.csv . The range of the data is from 2008-06-08 to 2016-07-01 with a total of 3973 rows . The most recent two years of the dataset (about 20%), from 2015-01-02 to 2016-07-01, is going to be reserved for testing.
 
 
@@ -50,17 +49,7 @@ First, the text data from the 25 features is going to be cleaned (some HTML tags
 
 ### 5. Benchmark Model
 
-Since this dataset is from a Kaggle kernel, there is no ‘official’ benchmark available. Below are the scores from some Kaggle users who used the very same metric and test set that is going to be implemented in this project (AUC metric and 2 last years as test set):
-
-User: Aaron7sun*
-
-Method: CNN and LSTM
-
-AUC score: 62-63%
-
-Link: https://www.kaggle.com/aaron7sun/stocknews/discussion/23254
-
-
+Since this dataset is from a Kaggle kernel, there is no ‘official’ benchmark available. Below are the scores from one Kaggle user who used the very same metric and test set that is going to be implemented in this project (AUC metric and 2 last years as test set):
 
 User: Kate
 
@@ -70,18 +59,6 @@ AUC score: 59%
 
 Link: https://www.kaggle.com/katerynad/bernoulli-naive-bayes-auc-59
 
-
-User: Dan Offer
-Method: Unknown
-AUC score: 56%
-Link: https://www.kaggle.com/aaron7sun/stocknews/discussion/23254
-
-User: Kate
-Method: Logistic Regression
-AUC score: 49%
-Link: https://www.kaggle.com/katerynad/logistic-regression
-
-*This was the user who provided the original database
 
 However, this benchmark will be used as a secondary benchmark. I have the following list to be considered as primary benchmark:
 
