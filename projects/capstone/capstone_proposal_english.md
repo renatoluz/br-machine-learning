@@ -1,11 +1,11 @@
-# Nanodegree Engenheiro de Machine Learning
-## Proposta de Projeto Final - Sentiment Analysis Applied to Stock Prediction
+# Machine Learning Engineer Nanodegree
+## Capstone Proposal - Sentiment Analysis Applied to Stock Prediction
 Renato Leal de Moura Luz  
 05 de julho de 2019
 
 
-
 ### 1. Domain Background
+
 Sentiment Analysis refers to the use of machine learning to identify the emotional reaction to an event, document or topic [1]. One of the possible applications of sentiment analysis is for predicting stock market movements. The internet is full of sources that represent the public opinion and sentiment about current events. Studies in [2] shows that the aggreagate public mood can be correlated with Dow Jones Industrial Average Index (DJIA).
 
 
@@ -54,14 +54,23 @@ First, the text data from the 25 features is going to be cleaned (some HTML tags
 Since this dataset is from a Kaggle kernel, there is no ‘official’ benchmark available. Below are the scores from some Kaggle users who used the very same metric and test set that is going to be implemented in this project (AUC metric and 2 last years as test set):
 
 User: Aaron7sun*
+
 Method: CNN and LSTM
+
 AUC score: 62-63%
+
 Link: https://www.kaggle.com/aaron7sun/stocknews/discussion/23254
 
+
+
 User: Kate
+
 Method: Bernoulii Naive Bayes
+
 AUC score: 59%
+
 Link: https://www.kaggle.com/katerynad/bernoulli-naive-bayes-auc-59
+
 
 User: Dan Offer
 Method: Unknown
