@@ -168,49 +168,71 @@ The AUC score for the training set is 53.19%
 The AUC score for the test set is 57.73%
 **************************************************************************
 Using max_features = 10
+
 The AUC score for the training set is 54.49%
+
 The AUC score for the test set is 53.95%
-============================================================================
+**************************************************************************
 Using max_features = 20
+
 The AUC score for the training set is 55.17%
+
 The AUC score for the test set is 53.61%
-============================================================================
+**************************************************************************
 Using max_features = 25
+
 The AUC score for the training set is 56.76%
+
 The AUC score for the test set is 51.43%
-============================================================================
+**************************************************************************
 Using max_features = 30
+
 The AUC score for the training set is 57.27%
+
 The AUC score for the test set is 52.67%
-============================================================================
+**************************************************************************
 Using max_features = 40
+
 The AUC score for the training set is 57.82%
+
 The AUC score for the test set is 52.77%
-============================================================================
+**************************************************************************
 Using max_features = 50
+
 The AUC score for the training set is 58.48%
+
 The AUC score for the test set is 54.09%
-============================================================================
+**************************************************************************
 Using max_features = 60
+
 The AUC score for the training set is 61.00%
+
 The AUC score for the test set is 51.97%
-============================================================================
+**************************************************************************
 Using max_features = 80
+
 The AUC score for the training set is 64.42%
+
 The AUC score for the test set is 49.87%
-============================================================================
+**************************************************************************
 Using max_features = 100
+
 The AUC score for the training set is 65.35%
+
 The AUC score for the test set is 48.84%
-============================================================================
+**************************************************************************
 Using max_features = 150
+
 The AUC score for the training set is 67.95%
+
 The AUC score for the test set is 48.37%
-============================================================================
+**************************************************************************
 Using max_features = 200
+
 The AUC score for the training set is 70.27%
+
 The AUC score for the test set is 47.53%
-============================================================================
+**************************************************************************
 
 The best test score was with max_features = 1, however the training score was lower than the test score which
 does not make sense - a model performing better with unseen data than with the data that it was training. The
@@ -223,9 +245,13 @@ higher than the test score:
 Also, some other learning algorithms were evaluated as well. Here’s a summary of test scores:
 
 ● Dummy Estimator = 49.13%
+
 ● Logistic Regression (with max_features = 50) = 54.09%
+
 ● Naive Bayes (with max_features = 50) = 54.53%
+
 ● Random Forest (with max_features = 50 and stop words) = 56.24%
+
 
 
 
