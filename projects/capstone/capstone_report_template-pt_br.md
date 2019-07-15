@@ -126,21 +126,21 @@ Next some more details:
 
 A dataset with 1989 samples and 25 news headlines (which is later processed into vectors) was loaded as input.
 
-    ● The most recent two years were used as the test set and the previous 6 years of data as the training set.
+  ● The most recent two years were used as the test set and the previous 6 years of data as the training set.
 
-    ● Those 25 features are later joined and processed into feature vector. The preprocessing went as follows:
-        a. The text from the features was cleaned and HTML or terminal tags (such as `\n`) were removed
+  ● Those 25 features are later joined and processed into feature vector. The preprocessing went as follows:
+    a. The text from the features was cleaned and HTML or terminal tags (such as `\n`) were removed
         
-        b. Next, the text was grouped and processed into feature vectors using the model bag of words .
+    b. Next, the text was grouped and processed into feature vectors using the model bag of words .
 
 
-● The AUC metric is used. As ML algorithms, the learning algorithm Logistic Regression is first evaluated since it fundamentally returns probabilities as output (which is necessary for the AUC metric). Later, other learning algorithms are also evaluated, more specifically the following list: "k Nearest Neighbors", "Linear SVM", "RBF SVM", "Decision Tree", "Random Forest", "AdaBoost", "GradientBoost", "Gaussian Naive Bayes".
+  ● The AUC metric is used. As ML algorithms, the learning algorithm Logistic Regression is first evaluated since it fundamentally returns probabilities as output (which is necessary for the AUC metric). Later, other learning algorithms are also evaluated, more specifically the following list: "k Nearest Neighbors", "Linear SVM", "RBF SVM", "Decision Tree", "Random Forest", "AdaBoost", "GradientBoost", "Gaussian Naive Bayes".
 
-● The hyperparameter optimization was performed using a pipeline which evaluates:
+  ● The hyperparameter optimization was performed using a pipeline which evaluates:
 
-    a. A pipeline with features from the vectorizer method ( TfidfTransformer ) for example, stop_words , tokenizer (a simple one or the PorterStemmer), ngram_range , norm and use_idf.
+   a. A pipeline with features from the vectorizer method ( TfidfTransformer ) for example, stop_words , tokenizer (a simple one or the PorterStemmer), ngram_range , norm and use_idf.
     
-    b. Also parameters from the learning algorithm are also evaluated, for example penalty and C for Logistic Regression and n_estimators for RandomForest.
+   b. Also parameters from the learning algorithm are also evaluated, for example penalty and C for Logistic Regression and n_estimators for RandomForest.
     
 
 ● The model with the highest validation score is going to be used to evaluate and report the test score.
@@ -158,11 +158,11 @@ played a major role here in order to limit the number of features and handle the
 Using max_features = 1
 The AUC score for the training set is 51.14%
 The AUC score for the test set is 57.97%
-============================================================================
+**************************************************************************
 Using max_features = 5
 The AUC score for the training set is 53.19%
 The AUC score for the test set is 57.73%
-============================================================================
+**************************************************************************
 Using max_features = 10
 The AUC score for the training set is 54.49%
 The AUC score for the test set is 53.95%
