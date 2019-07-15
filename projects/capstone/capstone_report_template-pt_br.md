@@ -9,7 +9,7 @@ Sentiment Analysis refers to the use of machine learning to identify the emotion
 
 ### Problem Statement
 
-This capstone seeks a model which uses the top daily news headlines from Reddit ( /r/worldnews ) to predict stock market movement. A dataset with 8 years of daily news headlines and their respective DJIAs is available in Kaggle [3]. The stock market movement will be modeled into a binary classification problem, where:
+This capstone seeks a model which uses the top daily news headlines from Reddit ( /r/worldnews ) to predict stock market movement. A dataset with 8 years of daily news headlines and their respective DJIAs is available in Kaggle. The stock market movement will be modeled into a binary classification problem, where:
 
 ● 1 is when DJIA Adj Close value rose or stayed as the same
 
@@ -40,22 +40,25 @@ We can also check how the training and testing set are distributed:
 
 ● Class Balance in the Training set (first 6 years):
 
-  ○ 1 - 54%
+    ○ 1 - 54%
   
-  ○ 0 - 46%
+    ○ 0 - 46%
   
   
 ● Class Balance in the Test set (last 2 years):
 
-  ○ 1 - 51%
-  
-  ○ 0 - 49%
-  
+    ○ 1 - 51%
+    
+    ○ 0 - 49%  
 
 We can observe that the balance of the test set is slightly off from the original balance, but still can be representative since it is not too far away from the original balance. He header of the dataset is given as follows:
 
 ![table1](table1.png)
 
+
+Top1 to Top25 are the features and refers to the top 25 headlines on Reddit News for each day. Label is the target variable . We can observe that all the headings starts with a `b` tag. This tag and other non-word characters are removed with the function `clean_text`:
+
+![clean_text](clean_text.png)
 
 ### Visualização exploratória
 Nesta seção, você precisará fornecer alguma forma de visualização que sintetize ou evidencie uma característica ou atributo relevante sobre os dados. A visualização deve sustentar adequadamente os dados utilizados. Discuta por que essa visualização foi escolhida e por que é relevante. Questões para se perguntar ao escrever esta seção:
