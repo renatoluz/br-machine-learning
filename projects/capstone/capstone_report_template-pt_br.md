@@ -55,7 +55,7 @@ We can observe that the balance of the test set is slightly off from the origina
 ![table1](table1.png)
 
 
-Top1 to Top25 are the features and refers to the top 25 headlines on Reddit News for each day. Label is the target variable . We can observe that all the headings starts with a `b` tag. This tag and other non-word characters are removed with the function `clean_text`:
+Top1 to Top25 are the features and refers to the top 25 headlines on Reddit News for each day. Label is the target variable. We can observe that all the headings starts with a `b` tag. This tag and other non-word characters are removed with the function `clean_text`:
 
 ![clean_text](clean_text.png)
 
@@ -104,9 +104,9 @@ The logistic regression with default parameters is performing even worse than th
 
 The preprocessing went as follows:
 
-    1. The text from the features was cleaned and HTML or terminal tags (such as `\n`) were removed using the function clear_text.
+  1. The text from the features was cleaned and HTML or terminal tags (such as `\n`) were removed using the function clear_text.
     
-    2. Next, all the 25 headlines where joined and processed into feature vectors using the model bag of words .
+  2. Next, all the 25 headlines where joined and processed into feature vectors using the model bag of words .
     
         a. First CountVectorizer() from sklearn was employed
         
