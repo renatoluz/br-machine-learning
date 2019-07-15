@@ -124,14 +124,14 @@ The implementation is summarized as follows:
 
 Next some more details:
 
-A dataset with 1989 samples and 25 news headlines (which is later processed into vectors) was loaded as input.
+  ● A dataset with 1989 samples and 25 news headlines (which is later processed into vectors) was loaded as input.
 
   ● The most recent two years were used as the test set and the previous 6 years of data as the training set.
 
   ● Those 25 features are later joined and processed into feature vector. The preprocessing went as follows:
-    a. The text from the features was cleaned and HTML or terminal tags (such as `\n`) were removed
+   a. The text from the features was cleaned and HTML or terminal tags (such as `\n`) were removed
         
-    b. Next, the text was grouped and processed into feature vectors using the model bag of words .
+   b. Next, the text was grouped and processed into feature vectors using the model bag of words .
 
 
   ● The AUC metric is used. As ML algorithms, the learning algorithm Logistic Regression is first evaluated since it fundamentally returns probabilities as output (which is necessary for the AUC metric). Later, other learning algorithms are also evaluated, more specifically the following list: "k Nearest Neighbors", "Linear SVM", "RBF SVM", "Decision Tree", "Random Forest", "AdaBoost", "GradientBoost", "Gaussian Naive Bayes".
@@ -154,13 +154,17 @@ The AUC test score of the dummy estimator was 49% . Next, the AUC test score for
 The overfitting occoured due to a very high number of featues. The number of features is near 33000 which is more than 20 times higher than the number of samples (about 1600 samples). The vectorizer parameter max_depth
 played a major role here in order to limit the number of features and handle the overfitting problem. Here’s some score when changing the value of max_depth in CountVectorizer and using Logistic Regression:
 
-
+**************************************************************************
 Using max_features = 1
+
 The AUC score for the training set is 51.14%
+
 The AUC score for the test set is 57.97%
 **************************************************************************
 Using max_features = 5
+
 The AUC score for the training set is 53.19%
+
 The AUC score for the test set is 57.73%
 **************************************************************************
 Using max_features = 10
