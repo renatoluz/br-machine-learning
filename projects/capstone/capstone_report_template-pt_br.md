@@ -27,23 +27,34 @@ The evaluation metric to be used is Area Under the Curve (AUC) which is a metric
 First some cursory investigation is computed:
 
 ● Total number of records: 1989
+
 ● Number of records in which the index DJIA increased or stayed at the same: 1065
+
 ● Number of records in which the index DJIA decreased: 924
+
 ● Percent. of indexes which increased or stayed at the same: 53.54%
+
 
 Both classes are amost equally distributed (53% vs 47%) which is good since they don’t suffer from imbalance.
 We can also check how the training and testing set are distributed:
 
 ● Class Balance in the Training set (first 6 years):
+
   ○ 1 - 54%
+  
   ○ 0 - 46%
   
+  
 ● Class Balance in the Test set (last 2 years):
+
   ○ 1 - 51%
+  
   ○ 0 - 49%
+  
 
 We can observe that the balance of the test set is slightly off from the original balance, but still can be representative since it is not too far away from the original balance. He header of the dataset is given as follows:
 
+![table1](table1.png)
 
 
 ### Visualização exploratória
