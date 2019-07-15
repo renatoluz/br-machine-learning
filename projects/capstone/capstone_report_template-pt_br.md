@@ -255,15 +255,17 @@ Also, some other learning algorithms were evaluated as well. Here’s a summary 
 
 
 
-## IV. Resultados
+## IV. Results
 
 ### Model Evaluation and Validation
 The Random Forest was first chosen for GridSearchCV due to the highest performance in the initial analysis. However, GridSearchCV didn’t help to improve the best score of 56.24% in the test set. The best test score with hyperparameter optimization was 51.73% with RandomForest. Perhaps this is a more representative score since the parameters were optimized to the test set but to the validation set which avoids overfititng to the test set due to the choice of hyperparameters.
 
 ### Justification
-The model chosen as final solution is Random Forest with the parameters max_depth=5, n_estimators=10,
-max_features=1. As vectorizer method it is chosen CountVectorizer with max_features = 50 and using stop words . It
-reached the highest score in the test set of 56.24% .
+The model chosen as final solution is Random Forest with the parameters max_depth=5, n_estimators=10, max_features=1. 
+
+As vectorizer method it is chosen CountVectorizer with max_features = 50 and using stop words. 
+
+It reached the highest score in the test set of 56.24% .
 
 
 ## V. Conclusion
@@ -276,11 +278,15 @@ The following plot summarizes the best test scores obtained:
 The best score was with Random Forest with 56.24% in the test set . The best reported score on Kaggle was 62%.
 
 ### Reflection
-This capstone seeks a model which uses the top daily news headlines from Reddit ( /r/worldnews ) to predict stock market movement. First a Dummy estimator was implemented to serve as baseline for comparison. The AUC test score was 49%. Next, Logistic Regression with the default parameters was implemented. The score of 41% was obtained which is low due to overfitting. The CountVectorizer parameter max_depth was evaluated in order to handle the overfitting problem. The best test score with Logistic Regression was of 54% when using
-max_features = 50. Finally, other models were evaluated as well. The highest test score was obtained with RandomForest of 56%. When compared to the benchmark is 7% higher than the Dummy estimation and 15% higher than Logistic Regression with default parameters.
+This capstone seeks a model which uses the top daily news headlines from Reddit ( /r/worldnews ) to predict stock market movement. First a Dummy estimator was implemented to serve as baseline for comparison. The AUC test score was 49%. Next, Logistic Regression with the default parameters was implemented. The score of 41% was obtained which is low due to overfitting. 
+
+The CountVectorizer parameter max_depth was evaluated in order to handle the overfitting problem. The best test score with Logistic Regression was of 54% when using max_features = 50. Finally, other models were evaluated as well. The highest test score was obtained with RandomForest of 56%. When compared to the benchmark is 7% higher than the Dummy estimation and 15% higher than Logistic Regression with default parameters.
+
 
 ### Improvement
-The best test score is still lower than two reported scores on Kaggle (59% and 62%), so still there’s room for improvement. Also, no significant improvement was obtained with GridSearchCV. A further investigation is necessary with more hyperparameters and also checking if the highest obtained test score has parameters that are really representative for unseen data.
+The best test score is still lower than two reported scores on Kaggle (59% and 62%), so still there’s room for improvement. Also, no significant improvement was obtained with GridSearchCV. 
+
+A further investigation is necessary with more hyperparameters and also checking if the highest obtained test score has parameters that are really representative for unseen data.
 
 
 ### References
@@ -291,4 +297,3 @@ The best test score is still lower than two reported scores on Kaggle (59% and 6
 4. https://en.wikipedia.org/wiki/Receiver_operating_characteristic
 5. https://en.wikipedia.org/wiki/Bag-of-words_model
 6. https://en.wikipedia.org/wiki/Tf%E2%80%93idf
-
