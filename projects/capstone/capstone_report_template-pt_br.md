@@ -1,17 +1,13 @@
-# Nanodegree Engenheiro de Machine Learning
-## Projeto final
-Joe Udacity  
-31 de dezembro de 2050
+# Machine Learning Engineer Nanodegree
+## Capstone Proposal - Sentiment Analysis Applied to Stock Prediction
+Renato Leal de Moura Luz, July 14th, 2019
 
-## I. Definição
-_(aprox. 1-2 páginas)_
+## I. Definition
+### Project Overview
 
-### Visão geral do projeto
-Nesta seção, procure fornecer uma visão de alto nível do projeto em linguagem simples. Questões para se perguntar ao escrever esta seção:
-- _Foi fornecido um resumo do projeto final, bem como o domínio do problema, a origem do projeto e o conjunto de dados ou entradas?_
-- _Foram dadas informações suficientes sobre o contexto para que um leitor desinformado possa entender o domínio e a enunciação problema?_
+Sentiment Analysis refers to the use of machine learning to identify the emotional reaction to an event, document or topic. One of the possible applications of sentiment analysis is for predicting stock market movements. The internet is full of sources that represent the public opinion and sentiment about current events. Studies shows that the aggregate public mood can be correlated with Dow Jones Industrial Average Index (DJIA).
 
-### Descrição do problema
+### Problem Statement
 Nesta seção, você irá definir o problema que você está tentando resolver de forma clara, incluindo a estratégia (resumo das tarefas) que você irá utilizar para alcançar a solução desejada. Você deverá também discutir detalhadamente qual será a solução pretendida para este problema. Questões para se perguntar ao escrever esta seção:
 - _A enunciação do problema foi claramente definida? O leitor irá entender o que você está esperando resolver?_
 - _Você discutiu detalhadamente como irá tentar resolver o problema?_
