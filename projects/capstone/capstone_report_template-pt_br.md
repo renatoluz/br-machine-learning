@@ -8,26 +8,43 @@ Renato Leal de Moura Luz, July 14th, 2019
 Sentiment Analysis refers to the use of machine learning to identify the emotional reaction to an event, document or topic. One of the possible applications of sentiment analysis is for predicting stock market movements. The internet is full of sources that represent the public opinion and sentiment about current events. Studies shows that the aggregate public mood can be correlated with Dow Jones Industrial Average Index (DJIA).
 
 ### Problem Statement
-Nesta seção, você irá definir o problema que você está tentando resolver de forma clara, incluindo a estratégia (resumo das tarefas) que você irá utilizar para alcançar a solução desejada. Você deverá também discutir detalhadamente qual será a solução pretendida para este problema. Questões para se perguntar ao escrever esta seção:
-- _A enunciação do problema foi claramente definida? O leitor irá entender o que você está esperando resolver?_
-- _Você discutiu detalhadamente como irá tentar resolver o problema?_
-- _A solução antecipada está claramente definida? O leitor entenderá quais resultados você está procurando?_
 
-### Métricas
-Nesta seção, você precisará definir claramente as métricas ou cálculos que você irá usar para avaliar o desempenho de um modelo ou resultado no seu projeto. Esses cálculos e métricas devem ser justificadas baseado nas características do problema e domínio do problema. Questões para se perguntar ao escrever esta seção:
-- _As métricas que você escolheu para medir o desempenho de seus modelos foram discutidas e definidas de forma clara?_
-- _Você forneceu justificativas razoáveis para as métricas escolhidas, baseando-se no problema e solução?_
+This capstone seeks a model which uses the top daily news headlines from Reddit ( /r/worldnews ) to predict stock market movement. A dataset with 8 years of daily news headlines and their respective DJIAs is available in Kaggle [3]. The stock market movement will be modeled into a binary classification problem, where:
+
+● 1 is when DJIA Adj Close value rose or stayed as the same
+
+● 0 is when DJIA Adj Close value decreased .
+
+### Metrics
+
+The evaluation metric to be used is Area Under the Curve (AUC) which is a metric derived from receiver operating characteristic (ROC) curve. The most recent two years of the dataset (about 20%), from 2015-01-02 to 2016-07-01, is going to be reserved for testing.
 
 
-## II. Análise
-_(aprox. 2-4 páginas)_
+## II. Analysis
 
-### Exploração dos dados
-Nesta seção, é esperado que você analise os dados que você está usando para o problema. Esses dados podem ser tanto na forma de um conjunto de dados (ou conjuntos de dados), dados de entrada (ou arquivos de entrada), ou até um ambiente. O tipo de dados deve ser descrito detalhadamente e, se possível, ter estatísticas e informações básicas apresentadas (tais como discussão dos atributos de entrada ou definição de características das entradas ou do ambiente) Qualquer anormalidade ou qualidade interessante dos dados que possam precisar ser devidamente tratadas devem ser identificadas (tais como características que precisem ser transformadas ou a possibilidade de valores atípicos) Questões para se perguntar ao escrever esta seção:
-- _Se exite um conjunto de dados para o problema em questão, você discutiu totalmente as características desse conjunto? Uma amostra dos dados foi oferecida ao leitor?_
-- _Se existe um conjunto de dados para o problema, as estatísticas sobre eles foram calculadas e reportadas? Foram discutidos quaisquer resultados relevantes desses cálculos?_
-- _Se **não** existe um conjunto de dados para o problema, foi realizada uma discussão sobre o espaço de entrada ou os dados de entrada do problema?_
-- _Existem anormalidades ou características acerca do espaço de entrada ou conjunto de dados que necessitem ser direcionados? (variáveis categóricas, valores faltando, valores atípicos, etc.)_
+### Data Exploration
+
+First some cursory investigation is computed:
+
+● Total number of records: 1989
+● Number of records in which the index DJIA increased or stayed at the same: 1065
+● Number of records in which the index DJIA decreased: 924
+● Percent. of indexes which increased or stayed at the same: 53.54%
+
+Both classes are amost equally distributed (53% vs 47%) which is good since they don’t suffer from imbalance.
+We can also check how the training and testing set are distributed:
+
+● Class Balance in the Training set (first 6 years):
+  ○ 1 - 54%
+  ○ 0 - 46%
+  
+● Class Balance in the Test set (last 2 years):
+  ○ 1 - 51%
+  ○ 0 - 49%
+
+We can observe that the balance of the test set is slightly off from the original balance, but still can be representative since it is not too far away from the original balance. He header of the dataset is given as follows:
+
+
 
 ### Visualização exploratória
 Nesta seção, você precisará fornecer alguma forma de visualização que sintetize ou evidencie uma característica ou atributo relevante sobre os dados. A visualização deve sustentar adequadamente os dados utilizados. Discuta por que essa visualização foi escolhida e por que é relevante. Questões para se perguntar ao escrever esta seção:
