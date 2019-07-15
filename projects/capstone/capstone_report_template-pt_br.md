@@ -35,8 +35,7 @@ First some cursory investigation is computed:
 ● Percent. of indexes which increased or stayed at the same: 53.54%
 
 
-Both classes are amost equally distributed (53% vs 47%) which is good since they don’t suffer from imbalance.
-We can also check how the training and testing set are distributed:
+Both classes are amost equally distributed (53% vs 47%) which is good since they don’t suffer from imbalance. We can also check how the training and testing set are distributed:
 
 ● Class Balance in the Training set (first 6 years):
 
@@ -60,13 +59,25 @@ Top1 to Top25 are the features and refers to the top 25 headlines on Reddit News
 
 ![clean_text](clean_text.png)
 
-### Visualização exploratória
-Nesta seção, você precisará fornecer alguma forma de visualização que sintetize ou evidencie uma característica ou atributo relevante sobre os dados. A visualização deve sustentar adequadamente os dados utilizados. Discuta por que essa visualização foi escolhida e por que é relevante. Questões para se perguntar ao escrever esta seção:
-- _Você visualizou uma característica ou um atributo relevante acerca do conjunto de dados ou dados de entrada?_
-- _A visualização foi completamente analisada e discutida?_
-- _Se um gráfico foi fornecido, os eixos, títulos e dados foram claramente definidos?_
+### Exploratory Visualization
 
-### Algoritmos e técnicas
+Let’s perform the exploratory visualization using cloud of words. First, let’s check from all the headline’s content in the dataset:
+
+![word_cloud](word_cloud.png)
+
+The package WordCloud was used for this visualization. Stop words were automatically removed from the visualization. We can observe that United States is the most frequent keywords in the news headline which is good since the DJIA is an American index. We can also check if there’s a difference between the cloud of words for the positive and negative class:
+
+Cloud of words for the positive class (Label = 1)
+
+![word_cloud1](word_cloud1.png)
+
+Cloud of words for the negative class (Label = 0)
+
+![word_cloud0](word_cloud0.png)
+
+One of the words that is found in the negative class but not in the positive class is attack which might have a correlation.
+
+### Algorithms and Techniques
 Nesta seção, você deverá discutir os algoritmos e técnicas que você pretende utilizar para solucionar o problema. Você deverá justificar o uso de cada algoritmo ou técnica baseado nas características do problema e domínio do problema. Questões para se perguntar ao escrever esta seção:
 - _Os algoritmos que serão utilizados, incluindo quaisquer variáveis/parâmetros padrão do projeto, foram claramente definidos?_
 - _As técnicas a serem usadas foram adequadamente discutidas e justificadas?_
