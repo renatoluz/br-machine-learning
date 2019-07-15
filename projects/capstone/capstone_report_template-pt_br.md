@@ -78,86 +78,187 @@ Cloud of words for the negative class (Label = 0)
 One of the words that is found in the negative class but not in the positive class is attack which might have a correlation.
 
 ### Algorithms and Techniques
-Nesta seção, você deverá discutir os algoritmos e técnicas que você pretende utilizar para solucionar o problema. Você deverá justificar o uso de cada algoritmo ou técnica baseado nas características do problema e domínio do problema. Questões para se perguntar ao escrever esta seção:
-- _Os algoritmos que serão utilizados, incluindo quaisquer variáveis/parâmetros padrão do projeto, foram claramente definidos?_
-- _As técnicas a serem usadas foram adequadamente discutidas e justificadas?_
-- _Ficou claro como os dados de entrada ou conjuntos de dados serão controlados pelos algoritmos e técnicas escolhidas?_
+
+First, the text data from the 25 features was cleaned (some HTML tags are still present in the original data). Next, the text was grouped and processed into feature vectors. The method bag of words was used to represent the text as numerical feature vectors. The bag of words model created a vocabulary of tokens from the headlines data and then counted. Also, the relevancy of words was evaluated using the method term frequency-inverse document frequency (tf-idf).
+
+The learning algorithm Logistic Regression is initially employed since it fundamentally has probabilities as output (which is useful for the AUC metric). Later, most of the other algorithms from sklearn are also evaluated. Here’s the list of classifiers implemented:
+
+![algo1](algo1.png)
 
 ### Benchmark
-Nesta  seção, você deverá definir claramente um resultado de referência (benchmark) ou limiar para comparar entre desempenhos obtidos pela sua solução. O raciocínio por trás da referência (no caso onde não é estabelecido um resultado) deve ser discutido. Questões para se perguntar ao escrever esta seção:
-- _Algum resultado ou valor que funcione como referência para a medida de desempenho foi fornecido?_
-- _Ficou claro como esse resultado ou valor foi obtido (seja por dados ou por hipóteses)?_
+Since this dataset is from a Kaggle kernel, there is no ‘official’ benchmark available. Below are the scores from some Kaggle users who used the very same metric and test set that is going to be implemented in this project (AUC metric and 2 last years as test set):
+
+However, this benchmark will be used as a secondary benchmark. The following list to be considered as primary benchmark :
+
+1. A ‘dummy’ classifier with random output ( test result = 49.13% )
+
+2. A logistic regression and a simple vectorizer with both using default parameters ( test esult = 41.36% )
 
 
-## III. Metodologia
-_(aprox. 3-5 páginas)_
+The logistic regression with default parameters is performing even worse than the dummy classifier due tooverfitting in the training set. The overfitting is due to a very high number of featues (about 20 times the number of samples). The vectorizer parameter max_depth played a major role here in order to limit the number of features and handle the overfitting.
 
-### Pré-processamento de dados
-Nesta seção, você deve documentar claramente todos os passos de pré-processamento que você pretende fazer, caso algum seja necessário. A partir da seção anterior, quaisquer anormalidades ou características que você identificou no conjunto de dados deverão ser adequadamente direcionadas e tratadas aqui. Questões para se perguntar ao escrever esta seção:
-- _Se os algoritmos escolhidos requerem passos de pré-processamento, como seleção ou transformações de atributos, tais passos foram adequadamente documentados?_
-- _Baseado na seção de **Exploração de dados**, se existiram anormalidade ou características que precisem ser tratadas, elas foram adequadamente corrigidas?_
-- _Se não é necessário um pré-processamento, foi bem definido o porquê?_
 
-### Implementação
-Nesta seção, o processo de escolha de quais métricas, algoritmos e técnicas deveriam ser implementados para os dados apresentados deve estar claramente documentado. Deve estar bastante claro como a implementação foi feita, e uma discussão deve ser elaborada a respeito de quaisquer complicações ocorridas durante o processo.  Questões para se perguntar ao escrever esta seção:
-- _Ficou claro como os algoritmos e técnicas foram implementados com os conjuntos de dados e os dados de entrada apresentados?_
-- _Houve complicações com as métricas ou técnicas originais que acabaram exigindo mudanças antes de chegar à solução?_
-- _Houve qualquer parte do processo de codificação (escrita de funções complicadas, por exemplo) que deveriam ser documentadas?_
+## III. Methodology
 
-### Refinamento
-Nesta seção, você deverá discutir o processo de aperfeiçoamento dos algoritmos e técnicas usados em sua implementação. Por exemplo, ajuste de parâmetros para que certos modelos obtenham melhores soluções está dentro da categoria de refinamento. Suas soluções inicial e final devem ser registradas, bem como quaisquer outros resultados intermediários significativos, conforme o necessário. Questões para se perguntar ao escrever esta seção:
-- _Uma solução inicial foi encontrada e claramente reportada?_
-- _O processo de melhoria foi documentado de foma clara, bem como as técnicas utilizadas?_
-- _As soluções intermediárias e finais foram reportadas claramente, conforme o processo foi sendo melhorado?_
+### Data Preprocessing
+
+The preprocessing went as follows:
+
+    1. The text from the features was cleaned and HTML or terminal tags (such as `\n`) were removed using the function clear_text.
+    
+    2. Next, all the 25 headlines where joined and processed into feature vectors using the model bag of words .
+    
+        a. First CountVectorizer() from sklearn was employed
+        
+        b. Later, the transformation tf-idf was also evaluated
+      
+The preprocessing was performed using Pipelines , here’s an example:
+
+![preprocess](preprocess.png)
+
+
+### Implementation
+The implementation is summarized as follows:
+
+![flow](flow.png)
+
+Next some more details:
+
+A dataset with 1989 samples and 25 news headlines (which is later processed into vectors) was loaded as input.
+
+    ● The most recent two years were used as the test set and the previous 6 years of data as the training set.
+
+    ● Those 25 features are later joined and processed into feature vector. The preprocessing went as follows:
+        a. The text from the features was cleaned and HTML or terminal tags (such as `\n`) were removed
+        
+        b. Next, the text was grouped and processed into feature vectors using the model bag of words .
+
+
+● The AUC metric is used. As ML algorithms, the learning algorithm Logistic Regression is first evaluated since it fundamentally returns probabilities as output (which is necessary for the AUC metric). Later, other learning algorithms are also evaluated, more specifically the following list: "k Nearest Neighbors", "Linear SVM", "RBF SVM", "Decision Tree", "Random Forest", "AdaBoost", "GradientBoost", "Gaussian Naive Bayes".
+
+● The hyperparameter optimization was performed using a pipeline which evaluates:
+
+    a. A pipeline with features from the vectorizer method ( TfidfTransformer ) for example, stop_words , tokenizer (a simple one or the PorterStemmer), ngram_range , norm and use_idf.
+    
+    b. Also parameters from the learning algorithm are also evaluated, for example penalty and C for Logistic Regression and n_estimators for RandomForest.
+    
+
+● The model with the highest validation score is going to be used to evaluate and report the test score.
+
+
+
+
+### Refinement
+The AUC test score of the dummy estimator was 49% . Next, the AUC test score for Logistic Regression model using default parameters was 41.36% . The logistic regression with default parameters is performing worse than even the dummy classifier due to overfitting in the training set (the training score was 100%). 
+
+The overfitting occoured due to a very high number of featues. The number of features is near 33000 which is more than 20 times higher than the number of samples (about 1600 samples). The vectorizer parameter max_depth
+played a major role here in order to limit the number of features and handle the overfitting problem. Here’s some score when changing the value of max_depth in CountVectorizer and using Logistic Regression:
+
+
+Using max_features = 1
+The AUC score for the training set is 51.14%
+The AUC score for the test set is 57.97%
+============================================================================
+Using max_features = 5
+The AUC score for the training set is 53.19%
+The AUC score for the test set is 57.73%
+============================================================================
+Using max_features = 10
+The AUC score for the training set is 54.49%
+The AUC score for the test set is 53.95%
+============================================================================
+Using max_features = 20
+The AUC score for the training set is 55.17%
+The AUC score for the test set is 53.61%
+============================================================================
+Using max_features = 25
+The AUC score for the training set is 56.76%
+The AUC score for the test set is 51.43%
+============================================================================
+Using max_features = 30
+The AUC score for the training set is 57.27%
+The AUC score for the test set is 52.67%
+============================================================================
+Using max_features = 40
+The AUC score for the training set is 57.82%
+The AUC score for the test set is 52.77%
+============================================================================
+Using max_features = 50
+The AUC score for the training set is 58.48%
+The AUC score for the test set is 54.09%
+============================================================================
+Using max_features = 60
+The AUC score for the training set is 61.00%
+The AUC score for the test set is 51.97%
+============================================================================
+Using max_features = 80
+The AUC score for the training set is 64.42%
+The AUC score for the test set is 49.87%
+============================================================================
+Using max_features = 100
+The AUC score for the training set is 65.35%
+The AUC score for the test set is 48.84%
+============================================================================
+Using max_features = 150
+The AUC score for the training set is 67.95%
+The AUC score for the test set is 48.37%
+============================================================================
+Using max_features = 200
+The AUC score for the training set is 70.27%
+The AUC score for the test set is 47.53%
+============================================================================
+
+The best test score was with max_features = 1, however the training score was lower than the test score which
+does not make sense - a model performing better with unseen data than with the data that it was training. The
+most reasonable value is max_features = 50 which led to the highest test score and still has the training score
+higher than the test score:
+
+
+● Test score for Logistic Regression (with max_features = 50) = 54.09%
+
+Also, some other learning algorithms were evaluated as well. Here’s a summary of test scores:
+
+● Dummy Estimator = 49.13%
+● Logistic Regression (with max_features = 50) = 54.09%
+● Naive Bayes (with max_features = 50) = 54.53%
+● Random Forest (with max_features = 50 and stop words) = 56.24%
+
 
 
 ## IV. Resultados
-_(aprox. 2-3 páginas)_
 
-### Modelo de avaliação e validação
-Nesta seção, o modelo final e quaisquer qualidades que o sustentem devem ser avaliadas em detalhe. Deve ficar claro como o modelo final foi obtido e por que tal modelo foi escolhido. Além disso, algum tipo de análise deve ser realizada para validar a robustez do modelo e sua solução, como, por exemplo, manipular os dados de entrada ou o ambiente para ver como a solução do modelo é afetada (técnica chamada de análise sensitiva). Questões para se perguntar ao escrever esta seção:
-- _O modelo final é razoável e alinhado com as expectativas de solução? Os parâmetros finais do modelo são apropriados?_
-- _O modelo final foi testado com várias entradas para avaliar se o modelo generaliza bem com dados não vistos?_
--_O modelo é robusto o suficiente para o problema? Pequenas perturbações (mudanças) nos dados de treinamento ou no espaço de entrada afetam os resultados de forma considerável?_
-- _Os resultados obtidos do modelo são confiáveis?_
+### Model Evaluation and Validation
+The Random Forest was first chosen for GridSearchCV due to the highest performance in the initial analysis. However, GridSearchCV didn’t help to improve the best score of 56.24% in the test set. The best test score with hyperparameter optimization was 51.73% with RandomForest. Perhaps this is a more representative score since the parameters were optimized to the test set but to the validation set which avoids overfititng to the test set due to the choice of hyperparameters.
 
-### Justificativa
-Nesta seção, a solução final do seu modelo e os resultados dela obtidos devem ser comparados aos valores de referência (benchmark) que você estabeleceu anteriormente no projeto, usando algum tipo de análise estatística. Você deverá também justificar se esses resultados e a solução são significativas o suficiente para ter resolvido o problema apresentado no projeto. Questões para se perguntar ao escrever esta seção:
-- _Os resultados finais encontrados são mais fortes do que a referência reportada anteriormente?_
-- _Você analisou e discutiu totalmente a solução final?_
-- _A solução final é significativa o suficiente para ter resolvido o problema?_
+### Justification
+The model chosen as final solution is Random Forest with the parameters max_depth=5, n_estimators=10,
+max_features=1. As vectorizer method it is chosen CountVectorizer with max_features = 50 and using stop words . It
+reached the highest score in the test set of 56.24% .
 
 
-## V. Conclusão
-_(aprox. 1-2 páginas)_
+## V. Conclusion
 
-### Foma livre de visualização
-Nesta seção, você deverá fornecer alguma forma de visualização que enfatize uma qualidade importante do projeto. A visualização é de forma livre, mas deve sustentar de forma razoável um resultado ou característica relevante sobre o problema que você quer discutir. Questões para se perguntar ao escrever esta seção:
-- _Você visualizou uma qualidade importante ou relevante acerca do problema, conjunto de dados, dados de entrada, ou resultados?_
-- _A visualização foi completamente analisada e discutida?_
-- _Se um gráfico foi fornecido, os eixos, títulos e dados foram claramente definidos?_
+### Free-Form Visualization
+The following plot summarizes the best test scores obtained:
 
-### Reflexão
-Nesta seção, você deverá resumir os procedimentos desde o problema até a solução e discutir um ou dois aspectos  do projeto que você achou particularmente interessante ou difícil. É esperado que você reflita sobre o projeto como um todo de forma a mostrar que você possui um entendimento sólido de todo o processo empregado em seu trabalho. Questões para se perguntar ao escrever esta seção:
-- _Você resumiu inteiramente o processo que você utilizou neste projeto?_
-- _Houve algum aspecto interessante do projeto?_
-- _Houve algum aspecto difícil do projeto?_
-- _O modelo e solução final alinham-se com suas expectativas para o problema, e devem ser usadas de forma geral para resolver esses tipos de problemas?_
+![score](score.png)
 
-### Melhorias
-Nesta seção, você deverá discutir como um aspecto da sua implementação poderia ser melhorado. Por exemplo, considere maneiras de tornar a sua implementação mais geral e o que precisaria ser modificado. Você não precisa fazer a melhoria, mas as possíveis soluções que resultariam de tais mudanças devem ser consideradas e comparadas/contrastadas com a sua solução atual. Questões para se perguntar ao escrever esta seção:
-- _Existem melhorias futuras que podem ser feitas nos algoritmos ou técnicas que você usou neste projeto?_
-- _Existem algoritmos ou técnicas que você pesquisou, porém não soube como implementá-las, mas consideraria usar se você soubesse como?_
-- _Se você usou sua solução final como nova referência, você acredita existir uma solução ainda melhor?_
+The best score was with Random Forest with 56.24% in the test set . The best reported score on Kaggle was 62%.
 
------------
+### Reflection
+This capstone seeks a model which uses the top daily news headlines from Reddit ( /r/worldnews ) to predict stock market movement. First a Dummy estimator was implemented to serve as baseline for comparison. The AUC test score was 49%. Next, Logistic Regression with the default parameters was implemented. The score of 41% was obtained which is low due to overfitting. The CountVectorizer parameter max_depth was evaluated in order to handle the overfitting problem. The best test score with Logistic Regression was of 54% when using
+max_features = 50. Finally, other models were evaluated as well. The highest test score was obtained with RandomForest of 56%. When compared to the benchmark is 7% higher than the Dummy estimation and 15% higher than Logistic Regression with default parameters.
 
-**Antes de enviar, pergunte-se. . .**
+### Improvement
+The best test score is still lower than two reported scores on Kaggle (59% and 62%), so still there’s room for improvement. Also, no significant improvement was obtained with GridSearchCV. A further investigation is necessary with more hyperparameters and also checking if the highest obtained test score has parameters that are really representative for unseen data.
 
-- _O relatório de projeto que você escreveu segue uma estrutura bem organizada, similar ao modelo do projeto?_
-- Cada seção (particularmente **Análise** e **Metodologia**) foi escrita de maneira clara, concisa e específica? Existe algum termo ou frase ambígua que precise de esclarecimento?
-- O público-alvo do seu projeto será capaz de entender suas análises, métodos e resultados?
-- Você revisou seu relatório de projeto adequadamente, de forma a minimizar a quantidade de erros gramaticais e ortográficos?
-- Todos os recursos usados neste projeto foram corretamente citados e referenciados?
-- O código que implementa sua solução está legível e comentado adequadamente?
-- O código é executado sem erros e produz resultados similares àqueles reportados?
+
+### References
+
+1. https://en.wikipedia.org/wiki/Sentiment_analysis
+2. https://arxiv.org/pdf/1610.09225.pdf
+3. https://www.kaggle.com/aaron7sun/stocknews
+4. https://en.wikipedia.org/wiki/Receiver_operating_characteristic
+5. https://en.wikipedia.org/wiki/Bag-of-words_model
+6. https://en.wikipedia.org/wiki/Tf%E2%80%93idf
+
