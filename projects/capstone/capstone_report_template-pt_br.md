@@ -129,6 +129,13 @@ The preprocessing was performed using Pipelines , here’s an example:
 ![preprocess](preprocess.png)
 
 
+The stop words dictionary used was the nltk.corpus - english.
+
+The tokenizer used was the nltk.stem.porter.
+
+The number of features was (1, 5, 10, 20, 25, 30, 40, 50, 60, 80, 100, 150, 200).
+
+
 ### Implementation
 The implementation is summarized as follows:
 
