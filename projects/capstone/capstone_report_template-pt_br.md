@@ -98,6 +98,8 @@ The learning algorithm Logistic Regression is initially employed since it fundam
 ### Benchmark
 Since this dataset is from a Kaggle kernel, there is no ‘official’ benchmark available. Below are the scores from some Kaggle users who used the very same metric and test set that is going to be implemented in this project (AUC metric and 2 last years as test set):
 
+![TABLE_RESULTS](TABLE_RESULTS.png)
+
 However, this benchmark will be used as a secondary benchmark. The following list to be considered as primary benchmark :
 
 1. A ‘dummy’ classifier with random output ( test result = 49.13% )
