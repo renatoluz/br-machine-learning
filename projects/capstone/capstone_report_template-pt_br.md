@@ -91,6 +91,17 @@ Stop words are words which are filtered out before or after processing of natura
 
 Tokenization is the process of converting a sequence of characters (such as in a computer program or web page) into a sequence of tokens (strings with an assigned and thus identified meaning). A program that performs lexical analysis may be termed a lexer, tokenizer, or scanner, though scanner is also a term for the first stage of a lexer. A lexer is generally combined with a parser, which together analyze the syntax of programming languages, web pages, and so forth.
 
+Stemming is the process of reducing inflected (or sometimes derived) words to their word stem, base or root form—generally a written word form. The stem need not be identical to the morphological root of the word; it is usually sufficient that related words map to the same stem, even if this stem is not in itself a valid root. Algorithms for stemming have been studied in computer science since the 1960s. Many search engines treat words with the same stem as synonyms as a kind of query expansion, a process called conflation.
+
+In pattern recognition, the k-nearest neighbors algorithm (k-NN) is a non-parametric method used for classification and regression. In both cases, the input consists of the k closest training examples in the feature space. The output depends on whether k-NN is used for classification or regression:
+
+In k-NN classification, the output is a class membership. An object is classified by a plurality vote of its neighbors, with the object being assigned to the class most common among its k nearest neighbors (k is a positive integer, typically small). If k = 1, then the object is simply assigned to the class of that single nearest neighbor.
+
+In k-NN regression, the output is the property value for the object. This value is the average of the values of k nearest neighbors.
+k-NN is a type of instance-based learning, or lazy learning, where the function is only approximated locally and all computation is deferred until classification. The k-NN algorithm is among the simplest of all machine learning algorithms.
+
+In machine learning, support-vector machines (SVMs, also support-vector networks[1]) are supervised learning models with associated learning algorithms that analyze data used for classification and regression analysis. Given a set of training examples, each marked as belonging to one or the other of two categories, an SVM training algorithm builds a model that assigns new examples to one category or the other, making it a non-probabilistic binary linear classifier (although methods such as Platt scaling exist to use SVM in a probabilistic classification setting). An SVM model is a representation of the examples as points in space, mapped so that the examples of the separate categories are divided by a clear gap that is as wide as possible. New examples are then mapped into that same space and predicted to belong to a category based on the side of the gap on which they fall.
+
 The learning algorithm Logistic Regression is initially employed since it fundamentally has probabilities as output (which is useful for the AUC metric). Later, most of the other algorithms from sklearn are also evaluated. Here’s the list of classifiers implemented:
 
 ![algo1](algo1.png)
@@ -107,8 +118,13 @@ However, this benchmark will be used as a secondary benchmark. The following lis
 2. A logistic regression and a simple vectorizer with both using default parameters ( test esult = 41.36% )
 
 
-The logistic regression with default parameters is performing even worse than the dummy classifier due tooverfitting in the training set. The overfitting is due to a very high number of featues (about 20 times the number of samples). The vectorizer parameter max_depth played a major role here in order to limit the number of features and handle the overfitting.
+The logistic regression with default parameters is performing even worse than the dummy classifier due tooverfitting in the training set. The overfitting is due to a very high number of featues (about 20 times the number of samples). The vectorizer parameter max_features played a major role here in order to limit the number of features and handle the overfitting.
 
+This parameter is absolutely optional and should be calibrated according to the rational thinking and the data structure.
+
+Sometimes it is not effective to transform the whole vocabulary, as the data may have some exceptionally rare words, which, if passed to TfidfVectorizer().fit(), will add unwanted dimensions to inputs in the future. One of the appropriate techniques in this case, for instance, would be to print out word frequences accross documents and then set a certain threshold for them. Imagine you have set a threshold of 50, and your data corpus consists of 100 words. After looking at the word frequences 20 words occur less than 50 times. Thus, you set max_features=80 and you are good to go.
+
+If max_features is set to None, then the whole corpus is considered during the TF-IDF transformation. Otherwise, if you pass, say, 5 to max_features, that would mean creating a feature matrix out of the most 5 frequent words accross text documents.
 
 ## III. Methodology
 
@@ -253,10 +269,7 @@ The AUC score for the training set is 70.27%
 The AUC score for the test set is 47.53%
 **************************************************************************
 
-The best test score was with max_features = 1, however the training score was lower than the test score which
-does not make sense - a model performing better with unseen data than with the data that it was training. The
-most reasonable value is max_features = 50 which led to the highest test score and still has the training score
-higher than the test score:
+The best test score was with max_features = 1, however the training score was lower than the test score which does not make sense - a model performing better with unseen data than with the data that it was training. The most reasonable value is max_features = 50 which led to the highest test score and still has the training score higher than the test score:
 
 
 ● Test score for Logistic Regression (with max_features = 50) = 54.09%
@@ -299,7 +312,7 @@ The best score was with Random Forest with 56.24% in the test set . The best rep
 ### Reflection
 This capstone seeks a model which uses the top daily news headlines from Reddit ( /r/worldnews ) to predict stock market movement. First a Dummy estimator was implemented to serve as baseline for comparison. The AUC test score was 49%. Next, Logistic Regression with the default parameters was implemented. The score of 41% was obtained which is low due to overfitting. 
 
-The CountVectorizer parameter max_depth was evaluated in order to handle the overfitting problem. The best test score with Logistic Regression was of 54% when using max_features = 50. Finally, other models were evaluated as well. The highest test score was obtained with RandomForest of 56%. When compared to the benchmark is 7% higher than the Dummy estimation and 15% higher than Logistic Regression with default parameters.
+The CountVectorizer parameter max_features was evaluated in order to handle the overfitting problem. The best test score with Logistic Regression was of 54% when using max_features = 50. Finally, other models were evaluated as well. The highest test score was obtained with RandomForest of 56%. When compared to the benchmark is 7% higher than the Dummy estimation and 15% higher than Logistic Regression with default parameters.
 
 
 ### Improvement
